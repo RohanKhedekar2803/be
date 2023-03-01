@@ -21,7 +21,8 @@ export const RegisterUser = async(payload)=>{
 }
 
 export const LogOut = async(payload)=>{
-    return await axios.post(`${baseURL}${authRoute.signout}`,payload).then((res)=>{
+    console.log(`${baseURL}${authRoute.signout}`);
+    return await axios.get(`${baseURL}${authRoute.signout}`).then((res)=>{
         return res.data;
     }).catch((err)=>{
         return {err}

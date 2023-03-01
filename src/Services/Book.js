@@ -1,6 +1,7 @@
 import axios from "axios"
 import { baseURL, bookRoute, getHeader } from "./config"
 
+
 export const getAllBooks = async()=>{
     return await axios.get(`${baseURL}${bookRoute}`,getHeader()).then((res)=>{
         return res.data;
@@ -26,13 +27,13 @@ export const getBookById = async(id)=>{
     })
 }
 
-// export const getwishlistedbooksbyid = async(id)=>{
-//     return await axios.get( tobedone  ,getHeader()).then((res)=>{
-//         return res.data;
-//     }).catch((err)=>{
-//         return {err:"error occurred"}
-//     })
-// }
+export const getwishlistedbooksbyid = async(id)=>{
+    return await axios.get(`${baseURL}/api/user/${id}/wishlist` ,getHeader()).then((res)=>{
+        return res.data;
+    }).catch((err)=>{
+        return {err:"error occurred"}
+    })
+}
 
 // export const getrecommendedbooksbyid = async(id)=>{
 //     return await axios.get( tobedone  ,getHeader()).then((res)=>{
@@ -42,10 +43,11 @@ export const getBookById = async(id)=>{
 //     })
 // }
 
-// export const getreadbooksbyid = async(id)=>{
-//     return await axios.get( tobedone  ,getHeader()).then((res)=>{
-//         return res.data;
-//     }).catch((err)=>{
-//         return {err:"error occurred"}
-//     })
-// }
+export const getreadbooksbyid = async(id)=>{
+    
+    return await axios.get(  `${baseURL}/api/user/${id}/readBooks` ,getHeader()).then((res)=>{
+        return res.data;
+    }).catch((err)=>{
+        return {err:"error occurred"}
+    })
+}

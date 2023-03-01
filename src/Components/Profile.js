@@ -8,9 +8,11 @@ import { useAuthState } from '../context/AuthContext';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from '../Services/Auth';
+import { ToastContainer, toast } from "react-toastify";
 const Profile = () => {
   const navigate = useNavigate();
-  const state = useAuthState()
+  const state = useAuthState();
+  const notify = (msg) => toast(msg);
   //useffect and use state to store current bookks data 
   var books = [];
   for (var i = 0; i < 6; i++) {
@@ -26,13 +28,13 @@ const Profile = () => {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
   const logout =() =>{
-    const { token} = state.user;
         LogOut(localStorage.getItem("currentUser"));
-        localStorage.removeItem("currentUser", JSON.stringify(state.user));
-        localStorage.removeItem("token", token.toString());
-        // notify("Logout successfull !!");
-        // console.log("hi")
-        navigate('/login')
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("token");
+        notify("Logout successfull !!");
+        navigate('/')
+
+
   }
   // const [options ,setOptions]= useState([ 
   //       {text : 'Recommended' , status :true}
@@ -60,7 +62,9 @@ const Profile = () => {
  {console.log(option)}
         <div className='mt-5 align-middle bg-white  w-3/5 ml-[290px] drop-shadow-2xl'>
             <div className='h-[50px] w-full  bg-blue-700 opacity-80  flex justify-between pl-14 pr-14 pb-12 pt-8 text-white rounded-t-xl'>
-              <button className='pl-5 pr-5 ' onClick={() => setOption(1)}  >Recommended Books</button>
+              <button className='pl-5 pr-5 ' onClick={() => setOption(1)} 
+              
+              >Recommended Books</button>
               <button  className='pl-5 pr-5' onClick={() => setOption(2)} >Wishlist</button>
               <button className='pl-5 pr-5' onClick={() => setOption(3)}>Already Read</button>
             </div>

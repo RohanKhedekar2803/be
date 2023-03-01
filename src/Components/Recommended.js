@@ -44,7 +44,6 @@ const Recommended = () => {
                   </div>   
                 
             </div>
-            <p>reccomended</p>
     </div>
   )
 }
